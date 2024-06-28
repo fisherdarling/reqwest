@@ -20,7 +20,8 @@ pub struct Body {
 }
 
 // The `Stream` trait isn't stable, so the impl isn't public.
-pub(crate) struct ImplStream(Body);
+#[derive(Debug)]
+pub struct ImplStream(Body);
 
 enum Inner {
     Reusable(Bytes),
@@ -154,7 +155,7 @@ impl Body {
         }
     }
 
-    pub(crate) fn into_stream(self) -> ImplStream {
+    pub fn into_stream(self) -> ImplStream {
         ImplStream(self)
     }
 
